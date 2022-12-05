@@ -3,4 +3,5 @@
 - Finalidade da agenda, é registrar jogos e equipes que participaram da COPA DO MUNDO 2022.
 - O mesmo foi desenvolvido com a linguagem python;
 - Aborda funções, estruturas de condições e repetição;
-- Aborda manipulação de arquivo.txt
+- Possui controle de erros;
+- Aborda manipulação de arquivo.txt;
