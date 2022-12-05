@@ -90,21 +90,28 @@ def new_game_of_write():
     gols2 = (int(input(f'👉 Insira aqui a quantidade de gols da {equipe2}: ')))
     faltas1 = (int(input(f'👉 Insira aqui a quantidade de faltas da {equipe1}: ')))
     faltas2 = (int(input(f'👉 Insira aqui a quantidade de faltas da {equipe2}: ')))
-    arquivo = open("jogos.txt", "r", encoding="utf8")
+    descrição = input('Tipo de jogo? por exemplo fases de grupo, oitavas de final, etc...: ')
     aux = 0
-    for linha in arquivo:
-        if (equipe1 in linha) and (equipe2 in linha):
-            print('⚠️  Esse jogo já está registrado, tente novamente! ⚠️')
-            aux += 1    
-    
-    if aux == 0:
+    aux1 = 0
+    with open("equipes.txt", "r", encoding = "utf-8") as leitura:
+        for linha in leitura.readlines():
+            if equipe1 in linha:
+                aux += 1
+            if equipe2 in linha:
+                aux1 += 1
+        leitura.close()
+
+    if aux == 0 or aux1 == 0:
+        print(f"⚠️ Uma das equipes não consta no registro de equipes!!\nRegistre-a primeiro através do menu na opção [2] Nova Equipe! ⚠️")
+        menu()
+
+    if aux == 1 and aux1 == 1:
         with open("jogos.txt", "a", encoding = "utf-8") as escrita:
-            escrita.write(f"\nJogo: {equipe1} VS {equipe2}, Placar: {gols1} X {gols2}, Faltas: {faltas1} VS {faltas2}")
+            escrita.write(f"\nJogo: {equipe1} VS {equipe2}, Placar: {gols1} X {gols2}, Faltas: {faltas1} VS {faltas2}, Tipo de Jogo: {descrição}")
             print('✅ Jogo registrado com sucesso!! ✅')
         escrita.close()
-    
-    arquivo.close()
     new_all_games_of_readlines()
+    
 
 #Função que lê as informações existentes do arquivo, e questiona o usuário se ele deseja adicionar novas informações
 #ou se desejas encerrar essa opção assim retornando ao Menu!
